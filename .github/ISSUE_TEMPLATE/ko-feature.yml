@@ -35,7 +35,7 @@ body:
     id: others
     attributes:
       label: 그밖에
-      description: 기능의 속성
+      description: 확인할 것들
       options:
         - 기존 코드를 변경해야 함
         - 문서 작성 필요
