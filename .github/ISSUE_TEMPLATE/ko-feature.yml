@@ -9,11 +9,12 @@ body:
       label: 종류
       description: 추가할 기능
       options:
-        - 메이크파일
+        - 구현 (무엇을)
+        - 구현 (어떻게)
         - 라이브러리
-        - 그래픽 / UI
-        - 구현 로직
         - 네트워크
+        - 구문 분석
+        - 메이크파일
         - 기타
     validations:
       required: true
