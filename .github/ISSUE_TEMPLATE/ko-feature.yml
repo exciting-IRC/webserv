@@ -22,7 +22,8 @@ body:
   - type: textarea
     id: implementation
     attributes:
-      label: 구현 방법
+      label: 내용
+      description: 구현 방법 또는 관련 정보
 
   - type: textarea
     id: related-code
