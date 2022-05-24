@@ -52,6 +52,13 @@ vector<string> split(const string& str, const string& sep) {
     return splitSep(str, sep);
 }
 
+void erase_from(string& line, const string& match) {
+  string::size_type comment_index = line.find(match);
+
+  if (comment_index != string::npos)
+    line.erase(comment_index);
+}
+
 }  // namespace strutil
 
 void test_splitEmptySep() {
@@ -94,4 +101,3 @@ void test_splitSep() {
     assert(strutil::split("a->->b->c", "->") == expected);
   }
 }
-

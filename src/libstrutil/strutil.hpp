@@ -12,6 +12,8 @@ enum { MAXSPLIT_ALL = -1 };
 using std::string;
 using std::vector;
 
+void erase_from(string& line, const string& match);
+
 vector<string> split(const string& str, const string& sep = "");
 
 template <typename T>
