@@ -1,8 +1,6 @@
-
-
 NAME := webserv
 
-VERBOSE := TRUE
+MAKEFLAGS += -s
 
 CXX := c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
@@ -14,12 +12,14 @@ SUBDIRS := libstrutil libutil main
 SRC := $(foreach dir, $(SUBDIRS), $(wildcard src/$(dir)/*.cpp))
 OBJ := $(SRC:%.cpp=%.o)
 
+include color.mk
+
 %.o: %.cpp
-	echo "\033[0;33mGenerating %-38.38s\r" $@
+	echo "$(YEL)$@$(END)"
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 $(NAME): $(OBJ)
-	@echo "\033[0;32mCompiling webserv..."
+	echo "$(GRN)Linking...$(END)"
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 all: $(NAME)
@@ -27,7 +27,7 @@ all: $(NAME)
 clean:
 	rm -f $(OBJ)
 
-fclean:
+fclean: clean
 	rm -f $(NAME)
 
 re:
@@ -35,4 +35,4 @@ re:
 	$(MAKE) all
 
 run: all
-	$(NAME)
+	./$(NAME)

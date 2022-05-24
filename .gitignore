@@ -1,6 +1,9 @@
 # Compiled binary
 webserv
 
+# vscode
+.vscode
+
 # Prerequisites
 *.d
 
