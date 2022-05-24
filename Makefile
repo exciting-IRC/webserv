@@ -1,19 +1,17 @@
 
-DIR := webserv
-BUILD := build
 
-NAME := $(BUILD)/webserv
+NAME := webserv
+
+VERBOSE := TRUE
 
 CXX := c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
-CXXFLAGS += -I $(DIR)
+CXXFLAGS += -I src
 
 SUBDIRS := libstrutil libutil main
 
-# vpath %.o $(BUILD)
-
-SRC := $(foreach dir, $(SUBDIRS), $(wildcard $(DIR)/$(dir)/*.cpp))
+SRC := $(foreach dir, $(SUBDIRS), $(wildcard src/$(dir)/*.cpp))
 OBJ := $(SRC:%.cpp=%.o)
 
 %.o: %.cpp
@@ -21,7 +19,7 @@ OBJ := $(SRC:%.cpp=%.o)
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 $(NAME): $(OBJ)
-# @echo "\033[0;32mCompiling webserv..."
+	@echo "\033[0;32mCompiling webserv..."
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 all: $(NAME)

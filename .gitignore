@@ -1,5 +1,5 @@
 # Compiled binary
-build/webserv
+webserv
 
 # Prerequisites
 *.d

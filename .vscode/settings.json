@@ -1,11 +1,4 @@
 {
-  "files.exclude": {
-    "**/.classpath": true,
-    "**/.factorypath": true,
-    "**/.project": true,
-    "**/.settings": true,
-    "**/*.o": false
-  },
   "conventionalCommits.autoCommit": false,
   "conventionalCommits.gitmoji": false,
   "conventionalCommits.promptFooter": true,
