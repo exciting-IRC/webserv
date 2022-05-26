@@ -4,86 +4,66 @@
 #include <string>
 #include <unordered_map>
 
+struct color_t {
+  // clang-format off
+  enum impl {
+    // Regular text
+    BLK, RED, GRN, YEL, BLU, MAG, CYN, WHT,
+
+    // Regular bold text
+    BBLK, BRED, BGRN, BYEL, BBLU, BMAG, BCYN, BWHT,
+
+    // Regular underline text
+    UBLK, URED, UGRN, UYEL, UBLU, UMAG, UCYN, UWHT,
+
+    // Regular background
+    BLKB, REDB, GRNB, YELB, BLUB, MAGB, CYNB, WHTB,
+
+    // High intensty background
+    BLKHB, REDHB, GRNHB, YELHB, BLUHB, MAGHB, CYNHB, WHTHB,
+
+    // High intensty text
+    HBLK, HRED, HGRN, HYEL, HBLU, HMAG, HCYN, HWHT,
+
+    // Bold high intensity text
+    BHBLK, BHRED, BHGRN, BHYEL, BHBLU, BHMAG, BHCYN, BHWHT,
+
+    // Reset
+    END
+  };
+  // clang-format on
+};
+
 namespace color {
 
 using std::string;
-// Regular text
+typedef const std::string color_code;
 
-extern const string BLK;
-extern const string RED;
-extern const string GRN;
-extern const string YEL;
-extern const string BLU;
-extern const string MAG;
-extern const string CYN;
-extern const string WHT;
+// Regular text
+extern color_code BLK, RED, GRN, YEL, BLU, MAG, CYN, WHT;
 
 // Regular bold text
-extern const string BBLK;
-extern const string BRED;
-extern const string BGRN;
-extern const string BYEL;
-extern const string BBLU;
-extern const string BMAG;
-extern const string BCYN;
-extern const string BWHT;
+extern color_code BBLK, BRED, BGRN, BYEL, BBLU, BMAG, BCYN, BWHT;
 
 // Regular underline text
-extern const string UBLK;
-extern const string URED;
-extern const string UGRN;
-extern const string UYEL;
-extern const string UBLU;
-extern const string UMAG;
-extern const string UCYN;
-extern const string UWHT;
+extern color_code UBLK, URED, UGRN, UYEL, UBLU, UMAG, UCYN, UWHT;
 
 // Regular background
-extern const string BLKB;
-extern const string REDB;
-extern const string GRNB;
-extern const string YELB;
-extern const string BLUB;
-extern const string MAGB;
-extern const string CYNB;
-extern const string WHTB;
+extern color_code BLKB, REDB, GRNB, YELB, BLUB, MAGB, CYNB, WHTB;
 
 // High intensty background
-extern const string BLKHB;
-extern const string REDHB;
-extern const string GRNHB;
-extern const string YELHB;
-extern const string BLUHB;
-extern const string MAGHB;
-extern const string CYNHB;
-extern const string WHTHB;
+extern color_code BLKHB, REDHB, GRNHB, YELHB, BLUHB, MAGHB, CYNHB, WHTHB;
 
 // High intensty text
-extern const string HBLK;
-extern const string HRED;
-extern const string HGRN;
-extern const string HYEL;
-extern const string HBLU;
-extern const string HMAG;
-extern const string HCYN;
-extern const string HWHT;
+extern color_code HBLK, HRED, HGRN, HYEL, HBLU, HMAG, HCYN, HWHT;
 
 // Bold high intensity text
-extern const string BHBLK;
-extern const string BHRED;
-extern const string BHGRN;
-extern const string BHYEL;
-extern const string BHBLU;
-extern const string BHMAG;
-extern const string BHCYN;
-extern const string BHWHT;
+extern color_code BHBLK, BHRED, BHGRN, BHYEL, BHBLU, BHMAG, BHCYN, BHWHT;
 
 // Reset
-extern const string END;
+extern color_code END;
 
+extern const std::vector<color::color_code> codes;
 }  // namespace color
-
-// Reference
-// https://gist.github.com/RabaDabaDoba/145049536f815903c79944599c6f952a
 
 #endif  // LIBUTIL_COLOR_HPP

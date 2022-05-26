@@ -23,12 +23,13 @@ int main() {
   std::cout << msg;
   msg  //
       .nl()
-      .add("You can also use colors like this:")
-      .withcolor("cyan", color::HCYN);
+      .withcolor("You can also use colors like this:", color::BHYEL)
+      .withcolor("or use map", color::codes[color_t::HCYN]);
 
   std::cout << msg.str();
 
-// [12:00:03] addf added [asdsfa] to adsdfsff
+  std::cout << "invalid code:" << color::codes.at(12412124) << "\n";
+  // [12:00:03] addf added [asdsfa] to adsdfsff
 
   // std::ifstream infile("/Users/youkim/Repo/webserv/config.conf");
   // string line;
