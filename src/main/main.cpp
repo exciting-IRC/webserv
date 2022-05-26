@@ -1,3 +1,4 @@
+#include <exception>
 #include <fstream>
 #include <iostream>
 #include <logger/log.hpp>
@@ -18,17 +19,23 @@ int main() {
       .red("World!")
       .nl()
       .green("numbers are ok")
-      .add(123);
+      .add(123)
+      .yellow("even float:")
+      .add(1.23);
 
   std::cout << msg;
   msg  //
       .nl()
-      .withcolor("You can also use colors like this:", color::BHYEL)
-      .withcolor("or use map", color::codes[color_t::HCYN]);
+      .add("You can also use colors like this.", color_t::BHYEL);
 
-  std::cout << msg.str();
+  std::cout << msg;
+  std::cout << msg.plaintext();
 
-  std::cout << "invalid code:" << color::codes.at(12412124) << "\n";
+  try {
+    std::cout << "invalid code:" << color::codes.at(12412124) << "\n";
+  } catch (const std::exception& e) {
+    std::cout << e.what() << "\n";
+  }
   // [12:00:03] addf added [asdsfa] to adsdfsff
 
   // std::ifstream infile("/Users/youkim/Repo/webserv/config.conf");

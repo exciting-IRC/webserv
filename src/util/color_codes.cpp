@@ -4,6 +4,8 @@
 
 namespace color {
 
+using std::vector;
+
 struct colorHash {
   size_t operator()(const color_t::impl n) const { return static_cast<size_t>(n); }
 };
@@ -33,6 +35,7 @@ color_code _color_codes[] = {
     // Reset
     END};
 
-const std::vector<color::color_code> codes(color::_color_codes,
-                                           COMPTIME_ARRAY_END(color::_color_codes));
+const vector<color_code> codes(_color_codes, COMPTIME_ARRAY_END(_color_codes));
+
+bool is_colored(color_t::impl color) { return color != color_t::NIL; }
 }  // namespace color

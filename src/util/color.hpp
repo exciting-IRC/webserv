@@ -29,7 +29,10 @@ struct color_t {
     BHBLK, BHRED, BHGRN, BHYEL, BHBLU, BHMAG, BHCYN, BHWHT,
 
     // Reset
-    END
+    END,
+
+    // Not a color (plaintext)
+    NIL = -1
   };
   // clang-format on
 };
@@ -64,6 +67,9 @@ extern color_code BHBLK, BHRED, BHGRN, BHYEL, BHBLU, BHMAG, BHCYN, BHWHT;
 extern color_code END;
 
 extern const std::vector<color::color_code> codes;
+
+bool is_colored(color_t::impl color);
+
 }  // namespace color
 
 #endif  // UTIL_COLOR_HPP
