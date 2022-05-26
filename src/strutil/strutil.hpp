@@ -2,6 +2,7 @@
 #define STRUTIL_STRUTIL_HPP
 
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -20,6 +21,14 @@ string& rtrim(string& s, const string& match = white_space);
 string& trim(string& s, const string& match = white_space);
 
 vector<string> split(const string& str, const string& sep = "");
+
+template <typename T>
+string to_string(const T& t) {
+  std::stringstream ss;
+
+  ss << t;
+  return ss.str();
+}
 
 template <typename T>
 void print_vector(vector<T> v, bool oneline = true) {

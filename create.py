@@ -55,6 +55,11 @@ def get_include(path: Path) -> str:
     return f"#include <{'/'.join(path.parent.parts)}/{name}.hpp>"
 
 
+def remove_prefix(text, prefix):
+    "because cluster python is 3.8 and no str.removeprefix()"
+    return text[len(prefix) :] if text.startswith(prefix) else text
+
+
 def get_nested_namespace(names: tuple[str]) -> str:
     names = tuple(remove_prefix(n, "lib") for n in names)
     begins = "\n".join([f"namespace {ns} {{" for ns in names])
@@ -70,9 +75,9 @@ def save_text_to(text: str, path: Path) -> None:
 
 
 def create_text(path: Path, *, namespace: Optional[tuple[str]]) -> str:
-    text = f"{get_include(path)}\n"
+    text = get_include(path)
     if namespace:
-        text += f"\n{get_nested_namespace(namespace)}"
+        text += f"\n\n{get_nested_namespace(namespace)}"
 
     return text if path.suffix == ".cpp" else wrap_header(text, path)
 

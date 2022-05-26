@@ -27,8 +27,8 @@ static vector<string> splitEmptySep(const string& str) {
 
 static vector<string> splitSep(const string& text, const string& sep) {
   vector<string> result;
-  std::size_t start = 0U, end = text.find(sep);
-  while (end != std::string::npos) {
+  string::size_type start = 0, end = text.find(sep);
+  while (end != string::npos) {
     result.push_back(text.substr(start, end - start));
     start = end + sep.length();
     end = text.find(sep, start);

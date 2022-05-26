@@ -1,4 +1,4 @@
-#include <libstrutil/strutil.hpp>
+#include <strutil/strutil.hpp>
 
 namespace strutil {
 const string white_space = " \t\n\r\f\v";
