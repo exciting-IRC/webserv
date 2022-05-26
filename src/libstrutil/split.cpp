@@ -1,9 +1,9 @@
-#include "strutil.hpp"
-
 #include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <sstream>
+
+#include "strutil.hpp"
 
 namespace strutil {
 
@@ -61,6 +61,8 @@ void erase_from(string& line, const string& match) {
 
 }  // namespace strutil
 
+/*
+// TODO: turn them into proper unit tests.
 void test_splitEmptySep() {
   {
     std::vector<std::string> expected(1, "");
@@ -101,3 +103,4 @@ void test_splitSep() {
     assert(strutil::split("a->->b->c", "->") == expected);
   }
 }
+*/
