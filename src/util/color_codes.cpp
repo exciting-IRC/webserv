@@ -1,14 +1,10 @@
 #include <util/color.hpp>
-#include <util/util.hpp>
+#include <util/comptime.hpp>
 #include <vector>
 
 namespace color {
 
 using std::vector;
-
-struct colorHash {
-  size_t operator()(const color_t::impl n) const { return static_cast<size_t>(n); }
-};
 
 color_code _color_codes[] = {
     // Regular text
@@ -35,7 +31,7 @@ color_code _color_codes[] = {
     // Reset
     END};
 
-const vector<color_code> codes(_color_codes, COMPTIME_ARRAY_END(_color_codes));
+const vector<color_code> codes COMPTIME_CONTAINER_INIT(_color_codes);
 
 bool is_colored(color_t::impl color) { return color != color_t::NIL; }
 }  // namespace color
