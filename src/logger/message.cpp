@@ -6,7 +6,7 @@
 
 namespace logger {
 // Getters
-const string Message::str() const {
+const string Message::str(flag_t::impl flag) const {
   using color::is_colored;
 
   std::stringstream ss;
@@ -22,16 +22,19 @@ const string Message::str() const {
     ss << it->first;
     prev_color = now_color;
   }
-  ss << color::END << "\n";
+  ss << color::END;
+  if (flag == flag_t::NEWLINE)
+    ss << "\n";
   return ss.str();
 }
 
-const string Message::plaintext() const {
+const string Message::plaintext(flag_t::impl flag) const {
   std::stringstream ss;
 
   for (color_it it = data_.begin(); it != data_.end(); ++it)
     ss << it->first;
-  ss << "\n";
+  if (flag == flag_t::NEWLINE)
+    ss << "\n";
   return ss.str();
 }
 

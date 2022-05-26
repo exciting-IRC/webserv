@@ -1,6 +1,7 @@
 #include <exception>
 #include <fstream>
 #include <iostream>
+#include <logger/logger.hpp>
 #include <logger/message.hpp>
 #include <main/main.hpp>
 #include <string>
@@ -13,6 +14,7 @@ using std::vector;
 
 int main() {
   logger::Message msg;
+  logger::Logger logger;
 
   msg  //
       .add("Hello")
@@ -29,7 +31,9 @@ int main() {
       .add("You can also use colors like this.", color_t::BHYEL);
 
   std::cout << msg;
-  std::cout << msg.plaintext();
+  std::cout << msg.plaintext(logger::flag_t::NEWLINE);
+
+  logger.info(msg);
 
   try {
     std::cout << "invalid code:" << color::codes.at(12412124) << "\n";
