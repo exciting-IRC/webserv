@@ -26,7 +26,7 @@ def wrap_with(body: str, wrap: tuple[str, str], *, distance: int = 1) -> str:
 
 
 def wrap_header(body: str, path: Path) -> str:
-    guard = '_'.join(path.parts).replace(".", "_").upper()
+    guard = "_".join(path.parts).replace(".", "_").upper()
     header = (
         f"#ifndef {guard}\n" f"#define {guard}",
         f"#endif // {guard}",
@@ -38,14 +38,25 @@ def base_category_name(stem: str) -> str:
     return stem.rsplit("_", maxsplit=1)[0]
 
 
-def get_include(path: Path) -> str:
-    if path.suffix not in [".tpp", ".cpp"]:
-        return ""
+def remove_prefix(text: str, prefix: str) -> str:
+    return text[len(prefix) :] if text.startswith(prefix) else text
 
-    return f"#include <{'/'.join(path.parent.parts)}/{base_category_name(path.stem)}.hpp>"
+
+def get_include(path: Path) -> str:
+    if path.suffix == ".hpp":
+        return ""
+    elif path.suffix == ".tpp":
+        name = base_category_name(path.stem)
+    elif path.suffix == ".cpp":
+        name = remove_prefix(path.parent.stem, "lib")
+    else:
+        raise ValueError(f"Unknown file type: {path}")
+
+    return f"#include <{'/'.join(path.parent.parts)}/{name}.hpp>"
 
 
 def get_nested_namespace(names: tuple[str]) -> str:
+    names = tuple(remove_prefix(n, "lib") for n in names)
     begins = "\n".join([f"namespace {ns} {{" for ns in names])
     ends = "\n".join([f"}}  // namespace {ns}" for ns in reversed(names)])
 
@@ -58,10 +69,8 @@ def save_text_to(text: str, path: Path) -> None:
     print(text)
 
 
-def create_text(
-    path: Path, *, namespace: Optional[tuple[str]]
-) -> str:
-    text = get_include(path)
+def create_text(path: Path, *, namespace: Optional[tuple[str]]) -> str:
+    text = f"{get_include(path)}\n"
     if namespace:
         text += f"\n{get_nested_namespace(namespace)}"
 
