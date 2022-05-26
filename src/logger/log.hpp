@@ -1,8 +1,6 @@
 #ifndef LOGGER_LOG_HPP
 #define LOGGER_LOG_HPP
 
-#include <iostream>
-#include <sstream>
 #include <string>
 #include <util/color.hpp>
 #include <utility>
@@ -28,33 +26,9 @@ class Message {
   Message();
   ~Message();
 
-  const string str() const {
-    std::stringstream ss;
-    color_t::impl now_color, prev_color = color_t::NIL;
-
-    for (vector<coloredText>::const_iterator it = data_.begin(); it != data_.end(); ++it) {
-      now_color = it->second;
-      if (color::is_colored(now_color))
-        ss << color::codes.at(now_color);
-      else if (color::is_colored(prev_color))
-        ss << color::END;
-
-      ss << it->first;
-      prev_color = now_color;
-    }
-    ss << color::END << "\n";
-    return ss.str();
-  }
-
-  const string plaintext() const {
-    std::stringstream ss;
-
-    for (vector<coloredText>::const_iterator it = data_.begin(); it != data_.end(); ++it) {
-      ss << it->first;
-    }
-    ss << "\n";
-    return ss.str();
-  }
+  // Getters
+  const string str() const;
+  const string plaintext() const;
 
   // Methods
   template <typename T>
