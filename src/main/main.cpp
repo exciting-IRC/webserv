@@ -24,7 +24,7 @@ int main() {
   msg  //
       .nl()
       .add("You can also use colors like this:")
-      .withcolor("cyan", HCYN);
+      .withcolor("cyan", color::HCYN);
 
   std::cout << msg.str();
 
