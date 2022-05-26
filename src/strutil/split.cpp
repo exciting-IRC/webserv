@@ -1,9 +1,9 @@
-#include "strutil.hpp"
-
 #include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <sstream>
+
+#include "strutil.hpp"
 
 namespace strutil {
 
@@ -18,7 +18,8 @@ static vector<string> splitEmptySep(const string& str) {
   vector<string> result;
   std::istringstream iss(str);
 
-  copy(std::istream_iterator<string>(iss), std::istream_iterator<string>(), back_inserter(result));
+  std::copy(std::istream_iterator<string>(iss), std::istream_iterator<string>(),
+            back_inserter(result));
   if (result.empty())
     result.push_back("");
   return result;
@@ -52,15 +53,10 @@ vector<string> split(const string& str, const string& sep) {
     return splitSep(str, sep);
 }
 
-void erase_from(string& line, const string& match) {
-  string::size_type comment_index = line.find(match);
-
-  if (comment_index != string::npos)
-    line.erase(comment_index);
-}
-
 }  // namespace strutil
 
+/*
+// TODO: turn them into proper unit tests.
 void test_splitEmptySep() {
   {
     std::vector<std::string> expected(1, "");
@@ -101,3 +97,4 @@ void test_splitSep() {
     assert(strutil::split("a->->b->c", "->") == expected);
   }
 }
+*/
