@@ -67,7 +67,7 @@ def save_text_to(text: str, path: Path) -> None:
 def create_text(path: Path, *, namespace: Optional[tuple[str]]) -> str:
     text = get_include(path)
     if namespace:
-        text += f"\n{get_nested_namespace(namespace)}"
+        text += f"\n\n{get_nested_namespace(namespace)}"
 
     return text if path.suffix == ".cpp" else wrap_header(text, path)
 
