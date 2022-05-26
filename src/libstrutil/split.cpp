@@ -18,7 +18,8 @@ static vector<string> splitEmptySep(const string& str) {
   vector<string> result;
   std::istringstream iss(str);
 
-  copy(std::istream_iterator<string>(iss), std::istream_iterator<string>(), back_inserter(result));
+  std::copy(std::istream_iterator<string>(iss), std::istream_iterator<string>(),
+            back_inserter(result));
   if (result.empty())
     result.push_back("");
   return result;
@@ -51,8 +52,6 @@ vector<string> split(const string& str, const string& sep) {
   else
     return splitSep(str, sep);
 }
-
-
 
 }  // namespace strutil
 
