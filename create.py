@@ -9,7 +9,7 @@ options:
     -n                       use parent directory name as namespace
     -N                       use nested directory names as namespace
     --namespace <N>          choose namespace to use.
-    -r <R>, --root <R>     root of directory path [default: webserv]
+    -r <R>, --root <R>     root of directory path [default: src]
 """
 from __future__ import annotations
 
