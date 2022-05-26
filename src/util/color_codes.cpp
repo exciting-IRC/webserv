@@ -1,5 +1,5 @@
-#include <libutil/color.hpp>
-#include <libutil/util.hpp>
+#include <util/color.hpp>
+#include <util/util.hpp>
 #include <vector>
 
 namespace color {

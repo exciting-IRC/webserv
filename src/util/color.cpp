@@ -1,4 +1,4 @@
-#include <libutil/color.hpp>
+#include <util/color.hpp>
 #include <vector>
 namespace color {
 
@@ -83,6 +83,5 @@ color_code BHWHT = create_color("1;97");
 
 // Reset
 color_code END = create_color("0");
-
 
 }  // namespace color

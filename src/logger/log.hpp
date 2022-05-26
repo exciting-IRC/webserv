@@ -1,9 +1,7 @@
-#ifndef LIBLOGGER_LOG_HPP
-#define LIBLOGGER_LOG_HPP
+#ifndef LOGGER_LOG_HPP
+#define LOGGER_LOG_HPP
 
 #include <iostream>
-#include <liblogger/log.hpp>
-#include <libutil/color.hpp>
 #include <sstream>
 #include <string>
 #include <utility>
@@ -61,6 +59,6 @@ std::ostream& operator<<(std::ostream& os, const Message& msg);
 
 }  // namespace logger
 
-#include <liblogger/log.tpp>
+#include <logger/log.tpp>
 
-#endif  // LIBLOGGER_LOG_HPP
+#endif  // LOGGER_LOG_HPP

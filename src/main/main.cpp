@@ -1,10 +1,10 @@
 #include <fstream>
 #include <iostream>
-#include <liblogger/log.hpp>
-#include <libstrutil/strutil.hpp>
-#include <libutil/types.hpp>
+#include <logger/log.hpp>
 #include <main/main.hpp>
 #include <string>
+#include <strutil/strutil.hpp>
+#include <util/types.hpp>
 #include <vector>
 
 using std::string;

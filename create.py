@@ -51,7 +51,6 @@ def remove_prefix(text, prefix):
 
 
 def get_nested_namespace(names: tuple[str]) -> str:
-    names = tuple(remove_prefix(n, "lib") for n in names)
     begins = "\n".join([f"namespace {ns} {{" for ns in names])
     ends = "\n".join([f"}}  // namespace {ns}" for ns in reversed(names)])
 

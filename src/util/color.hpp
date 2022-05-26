@@ -1,5 +1,5 @@
-#ifndef LIBUTIL_COLOR_HPP
-#define LIBUTIL_COLOR_HPP
+#ifndef UTIL_COLOR_HPP
+#define UTIL_COLOR_HPP
 
 #include <string>
 #include <unordered_map>
@@ -66,4 +66,4 @@ extern color_code END;
 extern const std::vector<color::color_code> codes;
 }  // namespace color
 
-#endif  // LIBUTIL_COLOR_HPP
+#endif  // UTIL_COLOR_HPP

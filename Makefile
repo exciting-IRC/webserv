@@ -7,7 +7,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 CXXFLAGS += -I src
 
-SUBDIRS := libstrutil libutil liblogger main
+SUBDIRS := strutil util logger main
 
 SRC := $(foreach dir, $(SUBDIRS), $(wildcard src/$(dir)/*.cpp))
 OBJ := $(SRC:%.cpp=%.o)

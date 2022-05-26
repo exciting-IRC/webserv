@@ -1,7 +1,8 @@
-#ifndef LIBLOGGER_LOG_TPP
-#define LIBLOGGER_LOG_TPP
+#ifndef LOGGER_LOG_TPP
+#define LOGGER_LOG_TPP
 
-#include <liblogger/log.hpp>
+#include <logger/log.hpp>
+#include <util/color.hpp>
 
 namespace logger {
 
@@ -43,4 +44,4 @@ Message& Message::add(const T& msg) {
 }
 }  // namespace logger
 
-#endif  // LIBLOGGER_LOG_TPP
+#endif  // LOGGER_LOG_TPP
