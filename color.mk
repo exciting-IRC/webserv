@@ -61,3 +61,5 @@ BHCYN := \033[1;96m
 BHWHT := \033[1;97m
 
 END := \033[0m
+ERASE := \033[0K
+ERASELINE := \r$(ERASE)

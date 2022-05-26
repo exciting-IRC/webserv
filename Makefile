@@ -1,25 +1,27 @@
 NAME := webserv
 
-MAKEFLAGS += -s
+MAKEFLAGS += -s -j
 
 CXX := c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
 CXXFLAGS += -I src
+CXXFLAGS += -MMD
 
 SUBDIRS := strutil util logger main
 
 SRC := $(foreach dir, $(SUBDIRS), $(wildcard src/$(dir)/*.cpp))
 OBJ := $(SRC:%.cpp=%.o)
+-include $(OBJ:%.o=%.d)
 
 include color.mk
 
 %.o: %.cpp
-	echo "$(YEL)$@$(END)"
+	printf "$(ERASELINE)$(YEL)$@$(END)"
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 $(NAME): $(OBJ)
-	echo "$(GRN)Linking...$(END)"
+	echo "\n$(GRN)Linking...$(END)"
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 all: $(NAME)
