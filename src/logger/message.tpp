@@ -1,7 +1,7 @@
 #ifndef LOGGER_LOG_TPP
 #define LOGGER_LOG_TPP
 
-#include <logger/log.hpp>
+#include <logger/message.hpp>
 #include <strutil/strutil.hpp>
 #include <util/color.hpp>
 

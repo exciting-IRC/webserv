@@ -1,7 +1,7 @@
 #include <exception>
 #include <fstream>
 #include <iostream>
-#include <logger/log.hpp>
+#include <logger/message.hpp>
 #include <main/main.hpp>
 #include <string>
 #include <strutil/strutil.hpp>

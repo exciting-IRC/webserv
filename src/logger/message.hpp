@@ -57,6 +57,6 @@ std::ostream& operator<<(std::ostream& os, const Message& msg);
 
 }  // namespace logger
 
-#include <logger/log.tpp>
+#include <logger/message.tpp>
 
 #endif  // LOGGER_LOG_HPP

@@ -1,6 +1,6 @@
 #include <algorithm>
 #include <iostream>
-#include <logger/log.hpp>
+#include <logger/message.hpp>
 #include <numeric>
 #include <sstream>
 
