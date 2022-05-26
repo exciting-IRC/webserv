@@ -5,16 +5,6 @@
 #include <sstream>
 
 namespace logger {
-
-// Constructors & Destructor
-Message::Message() {}
-Message::~Message() {}
-
-Message& Message::nl() {
-  data_.push_back(coloredText("\n", color_t::NIL));
-  return *this;
-}
-
 // Getters
 const string Message::str() const {
   using color::is_colored;
@@ -43,6 +33,12 @@ const string Message::plaintext() const {
     ss << it->first;
   ss << "\n";
   return ss.str();
+}
+
+// Methods
+Message& Message::nl() {
+  data_.push_back(coloredText("\n", color_t::NIL));
+  return *this;
 }
 
 // Overloaded << operator

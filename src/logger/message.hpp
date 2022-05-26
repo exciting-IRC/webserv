@@ -22,10 +22,6 @@ class Message {
   vector<coloredText> data_;
 
  public:
-  // Constructors & Destructor
-  Message();
-  ~Message();
-
   // Getters
   const string str() const;
   const string plaintext() const;
