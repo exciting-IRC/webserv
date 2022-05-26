@@ -1,0 +1,35 @@
+#ifndef STRUTIL_STRUTIL_HPP
+#define STRUTIL_STRUTIL_HPP
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+namespace strutil {
+
+using std::string;
+using std::vector;
+
+enum { MAXSPLIT_ALL = -1 };
+
+extern const string white_space;
+
+string& erase_from(string& line, const string& match);
+string& ltrim(string& s, const string& match = white_space);
+string& rtrim(string& s, const string& match = white_space);
+string& trim(string& s, const string& match = white_space);
+
+vector<string> split(const string& str, const string& sep = "");
+
+template <typename T>
+void print_vector(vector<T> v, bool oneline = true) {
+  const string sep = oneline ? ", " : "\n";
+  for (typename vector<T>::iterator it = v.begin(); it != v.end(); ++it) {
+    std::cout << "'" << *it << "'" << sep;
+  }
+  std::cout << "\n";
+}
+
+}  // namespace strutil
+
+#endif  // STRUTIL_STRUTIL_HPP
