@@ -8,9 +8,14 @@
 template <typename T>
 u32 printed_width(const T& v) {
   std::stringstream ss;
-  ss << v;
 
+  ss << v;
   return ss.str().length();
+}
+
+template <typename T>
+const T& clamp(const T& v, const T& lo, const T& hi) {
+  return std::min(std::max(v, lo), hi);
 }
 
 #endif  // UTIL_NUMBERS_TPP
