@@ -1,0 +1,16 @@
+#ifndef UTIL_NUMBERS_TPP
+#define UTIL_NUMBERS_TPP
+
+#include <sstream>
+#include <util/numbers.hpp>
+#include <util/types.hpp>
+
+template <typename T>
+u32 printed_width(const T& v) {
+  std::stringstream ss;
+  ss << v;
+
+  return ss.str().length();
+}
+
+#endif  // UTIL_NUMBERS_TPP
