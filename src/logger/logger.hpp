@@ -14,7 +14,7 @@ using std::string;
 class Logger {
  public:
   struct loglevel_t {
-    enum impl {
+    enum e {
       UNSET = -2,
       NONE = -1,
       DEBUG,
@@ -27,7 +27,7 @@ class Logger {
   };
 
   struct writeflag_t {
-    enum impl { NONE = 1 << 0, NEWLINE = 1 << 1 };
+    enum e { NONE = 1 << 0, NEWLINE = 1 << 1 };
   };
 
   typedef void (Logger::*logfunc)(const Message& msg);
@@ -35,11 +35,11 @@ class Logger {
  private:
   std::ofstream ofs;
   // TODO: 출력 설정 벡터로 변경하기?
-  loglevel_t::impl stdout_loglevel_;
-  loglevel_t::impl file_loglevel_;
+  loglevel_t::e stdout_loglevel_;
+  loglevel_t::e file_loglevel_;
 
-  // void log(const Message& msg, const loglevel_t::impl level);
-  void log(const Message& msg, const loglevel_t::impl level) {
+  // void log(const Message& msg, const loglevel_t::e level);
+  void log(const Message& msg, const loglevel_t::e level) {
     const Message levelMessages[] = {
         Message("DEBUG:    ", color_t::HBLU),
         Message("INFO:     ", color_t::HGRN),
@@ -62,17 +62,17 @@ class Logger {
   Logger()
       : stdout_loglevel_(loglevel_t::DEBUG), file_loglevel_(loglevel_t::NONE) {}
   Logger(const string& logfile,
-         loglevel_t::impl stdout_loglevel = loglevel_t::INFO,
-         loglevel_t::impl file_loglevel = loglevel_t::DEBUG)
-      // Logger(const string& logfile, loglevel_t::impl file_loglevel,
-      //        loglevel_t::impl stdout_loglevel)
+         loglevel_t::e stdout_loglevel = loglevel_t::INFO,
+         loglevel_t::e file_loglevel = loglevel_t::DEBUG)
+      // Logger(const string& logfile, loglevel_t::e file_loglevel,
+      //        loglevel_t::e stdout_loglevel)
       : stdout_loglevel_(stdout_loglevel), file_loglevel_(file_loglevel) {
     ofs.open(logfile.c_str(), std::fstream::out | std::fstream::app);
   }
 
   // Getters/Setters
-  void set_loglevel(loglevel_t::impl stdout_loglevel = loglevel_t::UNSET,
-                    loglevel_t::impl file_loglevel = loglevel_t::UNSET) {
+  void set_loglevel(loglevel_t::e stdout_loglevel = loglevel_t::UNSET,
+                    loglevel_t::e file_loglevel = loglevel_t::UNSET) {
     bool out, file;
     if ((out = (stdout_loglevel != loglevel_t::UNSET))) {
       stdout_loglevel_ = stdout_loglevel;

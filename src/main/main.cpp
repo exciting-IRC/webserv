@@ -25,7 +25,7 @@ int main() {
   for (int loglevel = loglevel_t::DEBUG; loglevel < loglevel_t::LOGLEVEL_SIZE;
        ++loglevel) {
     std::cout << "log level: " << loglevel << "\n";
-    logger.set_loglevel((loglevel_t::impl)loglevel);
+    logger.set_loglevel((loglevel_t::e)loglevel);
     for (int i = 0; i < 5; i++) {
       (logger.*logfuncs[i])(msgs[0]);
     }
