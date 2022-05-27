@@ -33,7 +33,7 @@ Message& Message::cyan(const T& msg) {
 }
 
 template <typename T>
-Message& Message::add(const T& msg, const color_t::impl color) {
+Message& Message::add(const T& msg, const color_t::e color) {
   data_.push_back(coloredText(strutil::to_string(msg) + " ", color));
   return *this;
 }

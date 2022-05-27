@@ -6,7 +6,7 @@
 
 struct color_t {
   // clang-format off
-  enum impl {
+  enum e {
     // Regular text
     BLK, RED, GRN, YEL, BLU, MAG, CYN, WHT,
 
@@ -68,7 +68,7 @@ extern color_code END;
 
 extern const std::vector<color::color_code> codes;
 
-bool is_colored(color_t::impl color);
+bool is_colored(color_t::e color);
 
 }  // namespace color
 

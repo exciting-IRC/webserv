@@ -1,6 +1,6 @@
 NAME := webserv
 
-MAKEFLAGS += -s -j
+MAKEFLAGS += -j
 
 CXX := c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
@@ -17,12 +17,12 @@ OBJ := $(SRC:%.cpp=%.o)
 include color.mk
 
 %.o: %.cpp
-	printf "$(ERASELINE)$(YEL)$@$(END)"
-	$(CXX) $(CXXFLAGS) -o $@ -c $<
+	@printf "$(ERASELINE)$(YEL)$@$(END)"
+	@$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 $(NAME): $(OBJ)
-	echo "\n$(GRN)Linking...$(END)"
-	$(CXX) $(CXXFLAGS) -o $@ $^
+	@echo "\n$(GRN)Linking...$(END)"
+	@$(CXX) $(CXXFLAGS) -o $@ $^
 
 all: $(NAME)
 
