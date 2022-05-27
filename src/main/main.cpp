@@ -3,7 +3,6 @@
 #include <iostream>
 #include <logger/logger.hpp>
 #include <logger/message.hpp>
-#include <main/main.hpp>
 #include <string>
 #include <strutil/strutil.hpp>
 #include <util/types.hpp>
@@ -13,35 +12,18 @@ using std::string;
 using std::vector;
 
 int main() {
-  using namespace logger;
-  typedef Logger::loglevel_t loglevel_t;
-
-  Logger logger("test.log");
-
-  Message msgs[] = {"Hello World!"};
-  Logger::logfunc logfuncs[] = {&Logger::debug, &Logger::info, &Logger::warning,
-                                &Logger::error, &Logger::critical};
-
-  for (int loglevel = loglevel_t::DEBUG; loglevel < loglevel_t::LOGLEVEL_SIZE;
-       ++loglevel) {
-    std::cout << "log level: " << loglevel << "\n";
-    logger.set_loglevel((loglevel_t::impl)loglevel);
-    for (int i = 0; i < 5; i++) {
-      (logger.*logfuncs[i])(msgs[0]);
-    }
-  }
 
   // [12:00:03] addf added [asdsfa] to adsdfsff
 
-  // std::ifstream infile("/Users/youkim/Repo/webserv/config.conf");
-  // string line;
-  // for (i32 i = 0; std::getline(infile, line); i++) {
-  //   strutil::erase_from(line, "#");
+  std::ifstream infile("/Users/youkim/Repo/webserv/config.conf");
+  string line;
+  for (i32 i = 0; std::getline(infile, line); i++) {
+    strutil::erase_from(line, "#");
 
-  //   vector<string> tokens = strutil::split(line);
-  //   std::cout << "line " << i << std::endl;
-  //   strutil::print_vector(tokens);
-  // }
+    vector<string> tokens = strutil::split(line);
+    std::cout << "line " << i << std::endl;
+    strutil::print_vector(tokens);
+  }
 
   return 0;
 }
