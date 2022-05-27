@@ -7,8 +7,11 @@ Logger::Logger()
 
 Logger::Logger(const string& logfile, loglevel_t::e file_loglevel,
                loglevel_t::e stdout_loglevel)
-    : stdout_loglevel_(stdout_loglevel), file_loglevel_(file_loglevel) {
-  ofs.open(logfile.c_str(), std::fstream::out | std::fstream::app);
+    : ofs_(logfile.c_str(), std::fstream::out | std::fstream::app),
+      stdout_loglevel_(stdout_loglevel),
+      file_loglevel_(file_loglevel) {
+  if (!ofs_.is_open())
+    throw std::runtime_error("Failed to open log file: " + logfile);
 }
 
 // Getters/Setters
@@ -44,7 +47,7 @@ void Logger::log(const Message& msg, const loglevel_t::e level) {
         Message("level").red(level).add("is out of range").str());
   }
   if (level >= file_loglevel_)
-    ofs << levelMessages[level].plaintext() << msg.plaintext(flag_t::NEWLINE);
+    ofs_ << levelMessages[level].plaintext() << msg.plaintext(flag_t::NEWLINE);
   if (level >= stdout_loglevel_)
     std::cout << levelMessages[level] << msg.str(flag_t::NEWLINE);
 }

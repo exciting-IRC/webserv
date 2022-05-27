@@ -32,7 +32,7 @@ class Logger {
   typedef void (Logger::*logfunc)(const Message& msg);
 
  private:
-  std::ofstream ofs;
+  std::ofstream ofs_;
   // TODO: 출력 설정 벡터로 변경하기?
   loglevel_t::e stdout_loglevel_;
   loglevel_t::e file_loglevel_;
@@ -47,7 +47,7 @@ class Logger {
 
   // Getters/Setters
   void set_loglevel(loglevel_t::e stdout_loglevel = loglevel_t::UNSET,
-                            loglevel_t::e file_loglevel = loglevel_t::UNSET);
+                    loglevel_t::e file_loglevel = loglevel_t::UNSET);
 
   // Methods
   void debug(const Message& msg);
