@@ -28,6 +28,14 @@ class Message {
   vector<coloredText> data_;
 
  public:
+  // Constructors
+  Message(){};
+  Message(const char* txt) { add(txt); }
+  Message(const Message& msg) : data_(msg.data_) {}
+  Message(const string& text, const color_t::impl color = color_t::NIL) {
+    add(text, color);
+  }
+
   // Getters
   const string str(flag_t::impl flag = flag_t::NORMAL) const;
   const string plaintext(flag_t::impl flag = flag_t::NORMAL) const;

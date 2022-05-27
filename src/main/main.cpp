@@ -13,33 +13,24 @@ using std::string;
 using std::vector;
 
 int main() {
-  logger::Message msg;
-  logger::Logger logger;
+  using namespace logger;
+  typedef Logger::loglevel_t loglevel_t;
 
-  msg  //
-      .add("Hello")
-      .red("World!")
-      .nl()
-      .green("numbers are ok")
-      .add(123)
-      .yellow("even float:")
-      .add(1.23);
+  Logger logger("test.log");
 
-  std::cout << msg;
-  msg  //
-      .nl()
-      .add("You can also use colors like this.", color_t::BHYEL);
+  Message msgs[] = {"Hello World!"};
+  Logger::logfunc logfuncs[] = {&Logger::debug, &Logger::info, &Logger::warning,
+                                &Logger::error, &Logger::critical};
 
-  std::cout << msg;
-  std::cout << msg.plaintext(logger::flag_t::NEWLINE);
-
-  logger.info(msg);
-
-  try {
-    std::cout << "invalid code:" << color::codes.at(12412124) << "\n";
-  } catch (const std::exception& e) {
-    std::cout << e.what() << "\n";
+  for (int loglevel = loglevel_t::DEBUG; loglevel < loglevel_t::LOGLEVEL_SIZE;
+       ++loglevel) {
+    std::cout << "log level: " << loglevel << "\n";
+    logger.set_loglevel((loglevel_t::impl)loglevel);
+    for (int i = 0; i < 5; i++) {
+      (logger.*logfuncs[i])(msgs[0]);
+    }
   }
+
   // [12:00:03] addf added [asdsfa] to adsdfsff
 
   // std::ifstream infile("/Users/youkim/Repo/webserv/config.conf");
