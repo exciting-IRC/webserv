@@ -2,7 +2,7 @@
 #include <util/comptime.hpp>
 #include <vector>
 
-namespace color {
+namespace color_str {
 
 using std::vector;
 
@@ -33,5 +33,5 @@ color_code _color_codes[] = {
 
 const vector<color_code> codes COMPTIME_CONTAINER_INIT(_color_codes);
 
-bool is_colored(color_t::e color) { return color != color_t::NIL; }
+bool is_colored(color_t::e color) { return color != color_t::Nil; }
 }  // namespace color

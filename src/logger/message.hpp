@@ -32,7 +32,7 @@ class Message {
   Message(){};
   Message(const char* txt) { add(txt); }
   Message(const Message& msg) : data_(msg.data_) {}
-  Message(const string& text, const color_t::e color = color_t::NIL) {
+  Message(const string& text, const color_t::e color = color_t::Nil) {
     add(text, color);
   }
 
@@ -57,7 +57,7 @@ class Message {
   Message& cyan(const T& msg);
 
   template <typename T>
-  Message& add(const T& msg, const color_t::e color = color_t::NIL);
+  Message& add(const T& msg, const color_t::e color = color_t::Nil);
 
   Message& nl();
 };

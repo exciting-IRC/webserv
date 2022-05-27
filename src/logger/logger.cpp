@@ -30,11 +30,11 @@ void Logger::set_loglevel(loglevel_t::e stdout_loglevel,
 // Private members
 void Logger::log(const Message& msg, const loglevel_t::e level) {
   const Message levelMessages[] = {
-      Message("Debug:    ", color_t::HBLU),
-      Message("Info:     ", color_t::HGRN),
-      Message("Warning:  ", color_t::BHYEL),
-      Message("Error:    ", color_t::RED),
-      Message("Critical: ", color_t::BHRED),
+      Message("Debug:    ", color_t::HiBlue),
+      Message("Info:     ", color_t::HiGreen),
+      Message("Warning:  ", color_t::BoldHiYellow),
+      Message("Error:    ", color_t::HiRed),
+      Message("Critical: ", color_t::BoldHiRed),
   };
 
   if (level >= loglevel_t::LoglevelSize) {

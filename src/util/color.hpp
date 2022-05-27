@@ -8,36 +8,36 @@ struct color_t {
   // clang-format off
   enum e {
     // Regular text
-    BLK, RED, GRN, YEL, BLU, MAG, CYN, WHT,
+    Black, Red, Green, Yellow, Blue, Magenta, Cyan, White,
 
     // Regular bold text
-    BBLK, BRED, BGRN, BYEL, BBLU, BMAG, BCYN, BWHT,
+    BoldBlack, BoldRed, BoldGreen, BoldYellow, BoldBlue, BoldMagenta, BoldCyan, BoldWhite,
 
     // Regular underline text
-    UBLK, URED, UGRN, UYEL, UBLU, UMAG, UCYN, UWHT,
+    UlBlack, UlRed, UlGreen, UlYellow, UlBlue, UlMagenta, UlCyan, UlWhite,
 
     // Regular background
-    BLKB, REDB, GRNB, YELB, BLUB, MAGB, CYNB, WHTB,
+    BlackBg, RedBg, GreenBg, YellowBg, BlueBg, MagentaBg, CyanBg, WhiteBg,
 
     // High intensty background
-    BLKHB, REDHB, GRNHB, YELHB, BLUHB, MAGHB, CYNHB, WHTHB,
+    BlackHiBg, RedHiBg, GreenHiBg, YellowHiBg, BlueHiBg, MagentaHiBg, CyanHiBg, WhiteHiBg,
 
     // High intensty text
-    HBLK, HRED, HGRN, HYEL, HBLU, HMAG, HCYN, HWHT,
+    HiBlack, HiRed, HiGreen, HiYellow, HiBlue, HiMagenta, HiCyan, HiWhite,
 
     // Bold high intensity text
-    BHBLK, BHRED, BHGRN, BHYEL, BHBLU, BHMAG, BHCYN, BHWHT,
+    BoldHiBlack, BoldHiRed, BHGoldrieen, BoldHiYellow, BoldHiBlue, BoldHiMagenta, BoldHiCyan, BoldHiWhite,
 
     // Reset
-    END,
+    End,
 
     // Not a color (plaintext)
-    NIL = -1
+    Nil = -1
   };
   // clang-format on
 };
 
-namespace color {
+namespace color_str {
 
 using std::string;
 typedef const std::string color_code;
@@ -66,10 +66,10 @@ extern color_code BHBLK, BHRED, BHGRN, BHYEL, BHBLU, BHMAG, BHCYN, BHWHT;
 // Reset
 extern color_code END;
 
-extern const std::vector<color::color_code> codes;
+extern const std::vector<color_str::color_code> codes;
 
 bool is_colored(color_t::e color);
 
-}  // namespace color
+}  // namespace color_str
 
 #endif  // UTIL_COLOR_HPP

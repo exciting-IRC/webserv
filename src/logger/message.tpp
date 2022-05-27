@@ -9,27 +9,27 @@ namespace logger {
 
 template <typename T>
 Message& Message::red(const T& msg) {
-  return add(msg, color_t::RED);
+  return add(msg, color_t::Red);
 }
 
 template <typename T>
 Message& Message::green(const T& msg) {
-  return add(msg, color_t::GRN);
+  return add(msg, color_t::Green);
 }
 
 template <typename T>
 Message& Message::yellow(const T& msg) {
-  return add(msg, color_t::HYEL);
+  return add(msg, color_t::HiYellow);
 }
 
 template <typename T>
 Message& Message::magenta(const T& msg) {
-  return add(msg, color_t::HMAG);
+  return add(msg, color_t::HiMagenta);
 }
 
 template <typename T>
 Message& Message::cyan(const T& msg) {
-  return add(msg, color_t::HCYN);
+  return add(msg, color_t::HiCyan);
 }
 
 template <typename T>
