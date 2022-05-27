@@ -1,5 +1,10 @@
 #include <util/color.hpp>
 #include <vector>
+
+namespace color {
+bool is_colored(color_t::e color) { return color != color_t::Nil; }
+}  // namespace color
+
 namespace color_str {
 
 inline static color_code create_color(color_code& code) {
@@ -84,4 +89,4 @@ color_code BHWHT = create_color("1;97");
 // Reset
 color_code END = create_color("0");
 
-}  // namespace color
+}  // namespace color_str

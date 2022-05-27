@@ -37,8 +37,11 @@ struct color_t {
   // clang-format on
 };
 
-namespace color_str {
+namespace color {
+bool is_colored(color_t::e color);
+}  // namespace color
 
+namespace color_str {
 using std::string;
 typedef const std::string color_code;
 
@@ -67,8 +70,6 @@ extern color_code BHBLK, BHRED, BHGRN, BHYEL, BHBLU, BHMAG, BHCYN, BHWHT;
 extern color_code END;
 
 extern const std::vector<color_str::color_code> codes;
-
-bool is_colored(color_t::e color);
 
 }  // namespace color_str
 

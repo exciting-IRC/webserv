@@ -7,7 +7,7 @@
 namespace logger {
 // Getters
 const string Message::str(flag_t::e flag) const {
-  using color_str::is_colored;
+  using color::is_colored;
 
   std::stringstream ss;
   color_t::e now_color, prev_color = color_t::Nil;
