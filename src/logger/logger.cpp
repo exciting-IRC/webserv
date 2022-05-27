@@ -14,17 +14,19 @@ Logger::Logger(const string& logfile, loglevel_t::e file_loglevel,
 // Getters/Setters
 void Logger::set_loglevel(loglevel_t::e stdout_loglevel,
                           loglevel_t::e file_loglevel) {
-  bool out, file;
-  if ((out = (stdout_loglevel != loglevel_t::Unset))) {
+  const bool is_set_out = stdout_loglevel != loglevel_t::Unset;
+  const bool is_set_file = file_loglevel != loglevel_t::Unset;
+
+  if (!is_set_out && !is_set_file)
+    throw std::invalid_argument("loglevels cannot be both unset");
+  if (is_set_out) {
     stdout_loglevel_ = stdout_loglevel;
     debug(Message("set stdout_loglevel_ to").cyan(stdout_loglevel_));
   }
-  if ((file = (file_loglevel != loglevel_t::Unset))) {
+  if (is_set_file) {
     file_loglevel_ = file_loglevel;
     debug(Message("set file_loglevel_ to").cyan(file_loglevel_));
   }
-  if (!out && !file)
-    throw std::invalid_argument("loglevels cannot be both unset");
 }
 
 // Private members
