@@ -16,7 +16,9 @@ string& ltrim(string& s, const string& match) {
 }
 
 // trim from both ends of string (right then left)
-string& trim(string& s, const string& match) { return ltrim(rtrim(s, match), match); }
+string& trim(string& s, const string& match) {
+  return ltrim(rtrim(s, match), match);
+}
 
 string& erase_from(string& line, const string& match) {
   string::size_type comment_index = line.find(match);
