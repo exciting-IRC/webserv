@@ -30,15 +30,6 @@ string to_string(const T& t) {
   return ss.str();
 }
 
-template <typename T>
-void print_vector(vector<T> v, bool oneline = true) {
-  const string sep = oneline ? ", " : "\n";
-  for (typename vector<T>::iterator it = v.begin(); it != v.end(); ++it) {
-    std::cout << "'" << *it << "'" << sep;
-  }
-  std::cout << "\n";
-}
-
 }  // namespace strutil
 
 #endif  // STRUTIL_STRUTIL_HPP
