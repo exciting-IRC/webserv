@@ -1,5 +1,3 @@
 #include "test.hpp"
 
-namespace test {
-
-}  // namespace test
+namespace test {}  // namespace test
