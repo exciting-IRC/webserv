@@ -14,19 +14,19 @@ class Logger {
  public:
   struct loglevel_t {
     enum e {
-      UNSET = -2,
-      NONE = -1,
-      DEBUG,
-      INFO,
-      WARNING,
-      ERROR,
-      CRITICAL,
-      LOGLEVEL_SIZE
+      Unset = -2,
+      None = -1,
+      Debug,
+      Info,
+      Warning,
+      Error,
+      Critical,
+      LoglevelSize
     };
   };
 
   struct writeflag_t {
-    enum e { NONE = 1 << 0, NEWLINE = 1 << 1 };
+    enum e { None = 1 << 0, Newline = 1 << 1 };
   };
 
   typedef void (Logger::*logfunc)(const Message& msg);
@@ -42,12 +42,12 @@ class Logger {
  public:
   Logger();
   Logger(const string& logfile,
-         loglevel_t::e stdout_loglevel = loglevel_t::INFO,
-         loglevel_t::e file_loglevel = loglevel_t::DEBUG);
+         loglevel_t::e stdout_loglevel = loglevel_t::Info,
+         loglevel_t::e file_loglevel = loglevel_t::Debug);
 
   // Getters/Setters
-  void set_loglevel(loglevel_t::e stdout_loglevel = loglevel_t::UNSET,
-                            loglevel_t::e file_loglevel = loglevel_t::UNSET);
+  void set_loglevel(loglevel_t::e stdout_loglevel = loglevel_t::Unset,
+                    loglevel_t::e file_loglevel = loglevel_t::Unset);
 
   // Methods
   void debug(const Message& msg);

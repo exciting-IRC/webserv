@@ -3,7 +3,7 @@
 namespace logger {
 // Constructors & Destructor
 Logger::Logger()
-    : stdout_loglevel_(loglevel_t::DEBUG), file_loglevel_(loglevel_t::NONE) {}
+    : stdout_loglevel_(loglevel_t::Debug), file_loglevel_(loglevel_t::None) {}
 
 Logger::Logger(const string& logfile, loglevel_t::e file_loglevel,
                loglevel_t::e stdout_loglevel)
@@ -15,11 +15,11 @@ Logger::Logger(const string& logfile, loglevel_t::e file_loglevel,
 void Logger::set_loglevel(loglevel_t::e stdout_loglevel,
                           loglevel_t::e file_loglevel) {
   bool out, file;
-  if ((out = (stdout_loglevel != loglevel_t::UNSET))) {
+  if ((out = (stdout_loglevel != loglevel_t::Unset))) {
     stdout_loglevel_ = stdout_loglevel;
     debug(Message("set stdout_loglevel_ to").cyan(stdout_loglevel_));
   }
-  if ((file = (file_loglevel != loglevel_t::UNSET))) {
+  if ((file = (file_loglevel != loglevel_t::Unset))) {
     file_loglevel_ = file_loglevel;
     debug(Message("set file_loglevel_ to").cyan(file_loglevel_));
   }
@@ -30,27 +30,27 @@ void Logger::set_loglevel(loglevel_t::e stdout_loglevel,
 // Private members
 void Logger::log(const Message& msg, const loglevel_t::e level) {
   const Message levelMessages[] = {
-      Message("DEBUG:    ", color_t::HBLU),
-      Message("INFO:     ", color_t::HGRN),
-      Message("WARNING:  ", color_t::BHYEL),
-      Message("ERROR:    ", color_t::RED),
-      Message("CRITICAL: ", color_t::BHRED),
+      Message("Debug:    ", color_t::HBLU),
+      Message("Info:     ", color_t::HGRN),
+      Message("Warning:  ", color_t::BHYEL),
+      Message("Error:    ", color_t::RED),
+      Message("Critical: ", color_t::BHRED),
   };
 
-  if (level >= loglevel_t::LOGLEVEL_SIZE) {
+  if (level >= loglevel_t::LoglevelSize) {
     throw std::out_of_range(
         Message("level").red(level).add("is out of range").str());
   }
   if (level >= file_loglevel_)
-    ofs << levelMessages[level].plaintext() << msg.plaintext(flag_t::NEWLINE);
+    ofs << levelMessages[level].plaintext() << msg.plaintext(flag_t::Newline);
   if (level >= stdout_loglevel_)
-    std::cout << levelMessages[level] << msg.str(flag_t::NEWLINE);
+    std::cout << levelMessages[level] << msg.str(flag_t::Newline);
 }
 
 // Methods
-void Logger::debug(const Message& msg) { log(msg, loglevel_t::DEBUG); }
-void Logger::info(const Message& msg) { log(msg, loglevel_t::INFO); }
-void Logger::warning(const Message& msg) { log(msg, loglevel_t::WARNING); }
-void Logger::error(const Message& msg) { log(msg, loglevel_t::ERROR); }
-void Logger::critical(const Message& msg) { log(msg, loglevel_t::CRITICAL); }
+void Logger::debug(const Message& msg) { log(msg, loglevel_t::Debug); }
+void Logger::info(const Message& msg) { log(msg, loglevel_t::Info); }
+void Logger::warning(const Message& msg) { log(msg, loglevel_t::Warning); }
+void Logger::error(const Message& msg) { log(msg, loglevel_t::Error); }
+void Logger::critical(const Message& msg) { log(msg, loglevel_t::Critical); }
 }  // namespace logger

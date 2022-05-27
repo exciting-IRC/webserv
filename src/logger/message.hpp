@@ -9,7 +9,7 @@
 namespace logger {
 
 struct flag_t {
-  enum e { NORMAL = 0, NEWLINE = 1 };
+  enum e { NORMAL = 0, Newline = 1 };
 };
 
 using std::string;

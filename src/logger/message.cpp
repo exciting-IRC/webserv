@@ -23,7 +23,7 @@ const string Message::str(flag_t::e flag) const {
     prev_color = now_color;
   }
   ss << color::END;
-  if (flag == flag_t::NEWLINE)
+  if (flag == flag_t::Newline)
     ss << "\n";
   return ss.str();
 }
@@ -33,7 +33,7 @@ const string Message::plaintext(flag_t::e flag) const {
 
   for (color_it it = data_.begin(); it != data_.end(); ++it)
     ss << it->first;
-  if (flag == flag_t::NEWLINE)
+  if (flag == flag_t::Newline)
     ss << "\n";
   return ss.str();
 }
