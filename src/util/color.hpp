@@ -26,7 +26,7 @@ struct color_t {
     HiBlack, HiRed, HiGreen, HiYellow, HiBlue, HiMagenta, HiCyan, HiWhite,
 
     // Bold high intensity text
-    BoldHiBlack, BoldHiRed, BHGoldrieen, BoldHiYellow, BoldHiBlue, BoldHiMagenta, BoldHiCyan, BoldHiWhite,
+    BoldHiBlack, BoldHiRed, BoldHiGreen, BoldHiYellow, BoldHiBlue, BoldHiMagenta, BoldHiCyan, BoldHiWhite,
 
     // Reset
     End,
