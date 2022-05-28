@@ -1,6 +1,6 @@
 #include <logger/logger.hpp>
 
-namespace logger {
+namespace util {
 // Constructors & Destructor
 Logger::Logger()
     : stdout_loglevel_(loglevel_t::DEBUG), file_loglevel_(loglevel_t::NONE) {}
@@ -58,4 +58,4 @@ void Logger::info(const Message& msg) { log(msg, loglevel_t::INFO); }
 void Logger::warning(const Message& msg) { log(msg, loglevel_t::WARNING); }
 void Logger::error(const Message& msg) { log(msg, loglevel_t::ERROR); }
 void Logger::critical(const Message& msg) { log(msg, loglevel_t::CRITICAL); }
-}  // namespace logger
+}  // namespace util

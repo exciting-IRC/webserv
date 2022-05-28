@@ -7,7 +7,7 @@
 #include <stdexcept>
 #include <string>
 #include <util/color.hpp>
-namespace logger {
+namespace util {
 using std::string;
 
 class Logger {
@@ -57,6 +57,6 @@ class Logger {
   void critical(const Message& msg);
 };
 
-}  // namespace logger
+}  // namespace util
 
 #endif  // LOGGER_LOGGER_HPP

@@ -13,7 +13,7 @@ using std::string;
 using std::vector;
 
 int main() {
-  using namespace logger;
+  using namespace util;
   typedef Logger::loglevel_t loglevel_t;
 
   Logger logger("test.log");
@@ -36,11 +36,11 @@ int main() {
   // std::ifstream infile("/Users/youkim/Repo/webserv/config.conf");
   // string line;
   // for (i32 i = 0; std::getline(infile, line); i++) {
-  //   strutil::erase_from(line, "#");
+  //   util::erase_from(line, "#");
 
-  //   vector<string> tokens = strutil::split(line);
+  //   vector<string> tokens = util::split(line);
   //   std::cout << "line " << i << std::endl;
-  //   strutil::print_vector(tokens);
+  //   util::print_vector(tokens);
   // }
 
   return 0;
