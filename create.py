@@ -39,6 +39,7 @@ def base_category_name(stem: str) -> str:
 
 
 def remove_prefix(text: str, prefix: str) -> str:
+    "because cluster python is 3.8 and no str.removeprefix()"
     return text[len(prefix) :] if text.startswith(prefix) else text
 
 
@@ -53,11 +54,6 @@ def get_include(path: Path) -> str:
         raise ValueError(f"Unknown file type: {path}")
 
     return f"#include <{'/'.join(path.parent.parts)}/{name}.hpp>"
-
-
-def remove_prefix(text, prefix):
-    "because cluster python is 3.8 and no str.removeprefix()"
-    return text[len(prefix) :] if text.startswith(prefix) else text
 
 
 def get_nested_namespace(names: tuple[str]) -> str:
