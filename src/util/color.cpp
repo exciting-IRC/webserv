@@ -2,7 +2,7 @@
 #include <vector>
 namespace color {
 
-inline static color_code create_color(color_code& code) {
+inline static color_code create_color(const color_code& code) {
   static color_code begin = "\001\033[", end = "\002m";
 
   return begin + code + end;
