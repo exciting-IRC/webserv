@@ -6,7 +6,6 @@
 #include <main/main.hpp>
 #include <string>
 #include <strutil/strutil.hpp>
-#include <util/types.hpp>
 #include <vector>
 
 using std::string;
@@ -35,8 +34,8 @@ int main() {
 
   // std::ifstream infile("/Users/youkim/Repo/webserv/config.conf");
   // string line;
-  // for (i32 i = 0; std::getline(infile, line); i++) {
-  //   util::erase_from(line, "#");
+  // for (int i = 0; std::getline(infile, line); i++) {
+  //   strutil::erase_from(line, "#");
 
   //   vector<string> tokens = util::split(line);
   //   std::cout << "line " << i << std::endl;
