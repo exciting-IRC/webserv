@@ -1,9 +1,9 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <iterator>
 #include <sstream>
-
-#include "strutil.hpp"
+#include <strutil/strutil.hpp>
 
 namespace strutil {
 
@@ -65,7 +65,7 @@ void test_splitEmptySep() {
     assert(strutil::split(" 		  			") == expected);
   }
   {
-    const std::string tmp[3] = {"a", "b", "c"};
+    std::string tmp[3] = {"a", "b", "c"};
     std::vector<std::string> expected(tmp, tmp + 3);
     assert(strutil::split("a b c") == expected);
     assert(strutil::split("a   b    c") == expected);
@@ -78,7 +78,7 @@ void test_splitEmptySep() {
 
 void test_splitSep() {
   {
-    const std::string tmp[3] = {"a", "b", "c"};
+    std::string tmp[3] = {"a", "b", "c"};
     std::vector<std::string> expected(tmp, tmp + 3);
     assert(strutil::split("a b c", " ") == expected);
 
@@ -87,11 +87,11 @@ void test_splitSep() {
     assert(strutil::split("a->b->c", "->") == expected);
   }
   {
-    const std::string tmp = "a!!b!!c";
+    std::string tmp = "a!!b!!c";
     assert(strutil::split(tmp, "->") == std::vector<std::string>(1, tmp));
   }
   {
-    const std::string tmp[4] = {"a", "", "b", "c"};
+    std::string tmp[4] = {"a", "", "b", "c"};
     std::vector<std::string> expected(tmp, tmp + 4);
     assert(strutil::split("a,,b,c", ",") == expected);
     assert(strutil::split("a->->b->c", "->") == expected);
