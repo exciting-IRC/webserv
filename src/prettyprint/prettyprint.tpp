@@ -46,7 +46,7 @@ void as_table(const C& c, bool is_print_heading) {
               << t.mid() << "\n";
   }
   for (size_t i = 0; i < c.size(); i++) {
-    std::array<string, 2> row = {util::to_string(i), c[i]};
+    std::array<string, 2> row = {util::to_string(i), util::to_string(c[i])};
     std::cout << t.line(row) << "\n";
   }
   std::cout << t.bottom() << "\n";
