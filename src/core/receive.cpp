@@ -118,7 +118,7 @@ void graceful_exit(int) {
   exit(0);
 }
 
-int main() {
+int test_socket() {
   signal(SIGINT, graceful_exit);
   init_addr(&addr);
   int kq = kqueue();
