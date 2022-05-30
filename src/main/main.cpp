@@ -5,7 +5,7 @@
 #include <logger/message.hpp>
 #include <string>
 #include <unordered_map>
-#include <util/prettyprint.hpp>
+#include <prettyprint/prettyprint.hpp>
 #include <utility>
 #include <vector>
 
@@ -49,9 +49,10 @@ int main() {
     vector<string> tokens = util::split(line);
     std::cout << Message("line", color_t::HiYellow).cyan(i) << std::endl;
     // prettyprint::simple(tokens);
-    prettyprint::as_table(tokens);
+    util::as_table(tokens);
     // break;
   }
+
   // std::ifstream infile("/Users/youkim/Repo/webserv/config.conf");
   // string line;
   // for (int i = 0; std::getline(infile, line); i++) {

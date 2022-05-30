@@ -17,7 +17,7 @@ OBJ := $(SRC:%.cpp=%.o)
 include color.mk
 
 %.o: %.cpp
-	@printf "$(ERASELINE)$(YEL)$@$(END)"
+	@echo "$(YEL)$@$(END)"
 	@$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 $(NAME): $(OBJ)
