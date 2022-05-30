@@ -13,12 +13,13 @@ using std::vector;
 
 enum { MAXSPLIT_ALL = -1 };
 
-extern const string white_space;
+extern const string lowercase, uppercase, alphabet, numbers, alnums, symbols,
+    whitespace;
 
 string& erase_from(string& line, const string& match);
-string& ltrim(string& s, const string& match = white_space);
-string& rtrim(string& s, const string& match = white_space);
-string& trim(string& s, const string& match = white_space);
+string& ltrim(string& s, const string& match = whitespace);
+string& rtrim(string& s, const string& match = whitespace);
+string& trim(string& s, const string& match = whitespace);
 
 vector<string> split(const string& str, const string& sep = "");
 

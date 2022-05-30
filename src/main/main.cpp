@@ -6,6 +6,7 @@
 #include <main/main.hpp>
 #include <string>
 #include <strutil/strutil.hpp>
+#include <util/generator.hpp>
 #include <vector>
 
 using std::string;
@@ -13,22 +14,29 @@ using std::vector;
 
 int main() {
   using namespace util;
-  typedef Logger::loglevel_t loglevel_t;
 
-  Logger logger("test.log");
-
-  Message msgs[] = {"Hello World!"};
-  Logger::logfunc logfuncs[] = {&Logger::debug, &Logger::info, &Logger::warning,
-                                &Logger::error, &Logger::critical};
-
-  for (int loglevel = loglevel_t::DEBUG; loglevel < loglevel_t::LOGLEVEL_SIZE;
-       ++loglevel) {
-    std::cout << "log level: " << loglevel << "\n";
-    logger.set_loglevel((loglevel_t::e)loglevel);
-    for (int i = 0; i < 5; i++) {
-      (logger.*logfuncs[i])(msgs[0]);
-    }
+  for (int i = 0; i < 10; i++) {
+    std::cout << gen<int>(-10, 10) << std::endl;
+    std::cout << "'" << gen<string>(20) << "'" << std::endl;
   }
+  // typedef Logger::loglevel_t loglevel_t;
+
+  // Logger logger("test.log");
+
+  // Message msgs[] = {"Hello World!"};
+  // Logger::logfunc logfuncs[] = {&Logger::debug, &Logger::info,
+  // &Logger::warning,
+  //                               &Logger::error, &Logger::critical};
+
+  // for (int loglevel = loglevel_t::DEBUG; loglevel <
+  // loglevel_t::LOGLEVEL_SIZE;
+  //      ++loglevel) {
+  //   std::cout << "log level: " << loglevel << "\n";
+  //   logger.set_loglevel((loglevel_t::e)loglevel);
+  //   for (int i = 0; i < 5; i++) {
+  //     (logger.*logfuncs[i])(msgs[0]);
+  //   }
+  // }
 
   // [12:00:03] addf added [asdsfa] to adsdfsff
 

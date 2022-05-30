@@ -1,7 +1,13 @@
 #include <strutil/strutil.hpp>
 
 namespace util {
-const string white_space = " \t\n\r\f\v";
+const string lowercase = "abcdefghijklmnopqrstuvwxyz";
+const string uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const string numbers = "0123456789";
+const string alphabet = lowercase + uppercase;
+const string alnums = alphabet + numbers;
+const string symbols = "!@#$%^&*()-_=+[]{}|;:,.<>/?`~";
+const string whitespace = " \t\n\r\f\v";
 
 // trim from end of string (right)
 string& rtrim(string& s, const string& match) {
