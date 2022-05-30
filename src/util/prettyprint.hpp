@@ -6,6 +6,7 @@
 #include <sstream>
 #include <strutil/strutil.hpp>
 #include <util/color.hpp>
+#include <util/comptime.hpp>
 #include <util/numbers.hpp>
 #include <vector>
 
@@ -109,23 +110,23 @@ struct border_type_t {
   enum e { Top, Mid, Bottom };
 };
 
+std::array<string, 2> default_header_colors = {HYEL, HGRN};
+std::array<string, 2> default_row_colors = {HRED, HCYN};
 std::array<string, 11> default_box_text = {"─", "│", "╭", "┬", "╮", "├",
                                            "┼", "┤", "╰", "┴", "╯"};
+
+template <size_t columns>
 struct table {
-  std::vector<int> column_widths;
-  std::vector<string> headers;
-  std::vector<std::vector<string> > rows;
+  std::array<int, columns> column_widths;
+  std::array<string, columns> headers;
 
   std::array<string, 11> box_text;
-
-  // Constructor
-  table(std::vector<int> column_widths, std::vector<string> headers,
-        std::array<string, 11> box_text = default_box_text)
-      : column_widths(column_widths), headers(headers), box_text(box_text) {}
+  std::array<string, columns> header_colors;
+  std::array<string, columns> row_colors;
 
   // Getters
   size_t row_width(size_t i) const { return column_widths[i] + 2; }
-  size_t columns() const { return column_widths.size(); }
+  // size_t columns() const { return column_widths.size(); }
   std::array<string, 3> row_box_text(const border_type_t::e type) const {
     const size_t at = 2 + type * 3;
 
@@ -140,8 +141,8 @@ struct table {
     std::array<string, 3> text = row_box_text(type);
 
     ss << text[0];
-    if (columns() > 0) {
-      for (size_t i = 0; i < columns() - 1; i++)
+    if (columns > 0) {
+      for (size_t i = 0; i < columns - 1; i++)
         ss << multiply("─", row_width(i)) << text[1];
       ss << multiply("─", column_widths.back() + 2);
     }
@@ -150,15 +151,20 @@ struct table {
     return ss.str();
   }
 
-  string line(const std::vector<string>& row, bool center_after = false) const {
+  string line(const std::array<string, columns>& row, bool is_header = false,
+              bool center_after = false) const {
     const string& cross = box_text[box_text_t::Vertical];
+    const std::array<string, columns>& colors =
+        is_header ? header_colors : row_colors;
     std::stringstream ss;
 
     ss << cross;
-    for (size_t i = 0; i < columns(); i++) {
+    for (size_t i = 0; i < columns; i++) {
       format_func format = (i == 0 || center_after) ? center : ljust;
-      ss << format((i < row.size()) ? row[i] : "", row_width(i), ' ');
-      if (i < columns() - 1)
+      ss << colors[i] << ' '
+         << format((i < row.size()) ? row[i] : "", row_width(i) - 1, ' ')
+         << END;
+      if (i < columns - 1)
         ss << cross;
     }
     ss << cross;
@@ -168,34 +174,30 @@ struct table {
   string top() const { return border(border_type_t::Top); }
   string mid() const { return border(border_type_t::Mid); }
   string bottom() const { return border(border_type_t::Bottom); }
+
+  void header() const {
+    std::cout << top() << "\n" << line(headers, true) << "\n" << mid() << "\n";
+  }
 };
 
 /// 컨테이너의 원소를 표로 출력
 template <typename C>
-void table(const C& c, bool is_print_heading = true) {
-  (void)is_print_heading;
-  (void)c;
+void as_table(const C& c, bool is_print_heading = true) {
   const size_t index_width = printed_width(c.size());
   const size_t elem_width =
       clamp<size_t>(printed_width(widest_element(c)), 10u, 80u);
 
-  std::vector<int> widths;
-  widths.push_back(index_width);  // index
-  widths.push_back(elem_width);   // data
+  std::array<int, 2> widths = {index_width, elem_width};
+  std::array<string, 2> header = {"#", "data"};
 
-  std::vector<string> header;
-  header.push_back("#");
-  header.push_back("data");
+  table<2> t = {widths, header, default_box_text, default_header_colors,
+                default_row_colors};
 
-  struct table t(widths, header);
-
-  std::cout << t.top() << "\n";
-  std::cout << t.line(header, true) << "\n";
-  std::cout << t.mid() << "\n";
+  if (is_print_heading) {
+    t.header();
+  }
   for (size_t i = 0; i < c.size(); i++) {
-    std::vector<string> row;
-    row.push_back(util::to_string(i));
-    row.push_back(c[i]);
+    std::array<string, 2> row = {util::to_string(i), c[i]};
     std::cout << t.line(row) << "\n";
   }
   std::cout << t.bottom() << "\n";

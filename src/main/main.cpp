@@ -49,7 +49,7 @@ int main() {
     vector<string> tokens = util::split(line);
     std::cout << Message("line", color_t::HiYellow).cyan(i) << std::endl;
     // prettyprint::simple(tokens);
-    prettyprint::table(tokens);
+    prettyprint::as_table(tokens);
     // break;
   }
   // std::ifstream infile("/Users/youkim/Repo/webserv/config.conf");
