@@ -4,7 +4,7 @@
 #include <numeric>
 #include <sstream>
 
-namespace logger {
+namespace util {
 // Getters
 const string Message::str(flag_t::e flag) const {
   using color::is_colored;
@@ -50,4 +50,4 @@ std::ostream& operator<<(std::ostream& os, const Message& msg) {
   return os;
 }
 
-}  // namespace logger
+}  // namespace util

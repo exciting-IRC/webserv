@@ -1,6 +1,6 @@
 #include <strutil/strutil.hpp>
 
-namespace strutil {
+namespace util {
 const string white_space = " \t\n\r\f\v";
 
 // trim from end of string (right)
@@ -27,4 +27,4 @@ string& erase_from(string& line, const string& match) {
     line.erase(comment_index);
   return line;
 }
-}  // namespace strutil
+}  // namespace util

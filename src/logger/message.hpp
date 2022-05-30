@@ -6,7 +6,7 @@
 #include <utility>
 #include <vector>
 
-namespace logger {
+namespace util {
 
 struct flag_t {
   enum e { NORMAL = 0, NEWLINE = 1 };
@@ -65,7 +65,7 @@ class Message {
 // Overloaded << operator
 std::ostream& operator<<(std::ostream& os, const Message& msg);
 
-}  // namespace logger
+}  // namespace util
 
 #include <logger/message.tpp>
 

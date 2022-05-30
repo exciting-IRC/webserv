@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-namespace strutil {
+namespace util {
 
 using std::string;
 using std::vector;
@@ -39,6 +39,6 @@ void print_vector(vector<T> v, bool oneline = true) {
   std::cout << "\n";
 }
 
-}  // namespace strutil
+}  // namespace util
 
 #endif  // STRUTIL_STRUTIL_HPP

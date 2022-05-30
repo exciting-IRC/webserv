@@ -5,7 +5,7 @@
 #include <sstream>
 #include <strutil/strutil.hpp>
 
-namespace strutil {
+namespace util {
 
 /**
  * ""           -> ""
@@ -53,26 +53,26 @@ vector<string> split(const string& str, const string& sep) {
     return splitSep(str, sep);
 }
 
-}  // namespace strutil
+}  // namespace util
 
 /*
 // TODO: turn them into proper unit tests.
 void test_splitEmptySep() {
   {
     std::vector<std::string> expected(1, "");
-    assert(strutil::split("       ") == expected);
-    assert(strutil::split("") == expected);
-    assert(strutil::split(" 		  			") == expected);
+    assert(util::split("       ") == expected);
+    assert(util::split("") == expected);
+    assert(util::split(" 		  			") == expected);
   }
   {
     std::string tmp[3] = {"a", "b", "c"};
     std::vector<std::string> expected(tmp, tmp + 3);
-    assert(strutil::split("a b c") == expected);
-    assert(strutil::split("a   b    c") == expected);
+    assert(util::split("a b c") == expected);
+    assert(util::split("a   b    c") == expected);
   }
   {
     std::vector<std::string> expected(1, "a");
-    assert(strutil::split("a") == expected);
+    assert(util::split("a") == expected);
   }
 }
 
@@ -80,21 +80,21 @@ void test_splitSep() {
   {
     std::string tmp[3] = {"a", "b", "c"};
     std::vector<std::string> expected(tmp, tmp + 3);
-    assert(strutil::split("a b c", " ") == expected);
+    assert(util::split("a b c", " ") == expected);
 
-    assert(strutil::split("a,b,c", ",") == expected);
-    assert(strutil::split("a!!b!!c", "!!") == expected);
-    assert(strutil::split("a->b->c", "->") == expected);
+    assert(util::split("a,b,c", ",") == expected);
+    assert(util::split("a!!b!!c", "!!") == expected);
+    assert(util::split("a->b->c", "->") == expected);
   }
   {
     std::string tmp = "a!!b!!c";
-    assert(strutil::split(tmp, "->") == std::vector<std::string>(1, tmp));
+    assert(util::split(tmp, "->") == std::vector<std::string>(1, tmp));
   }
   {
     std::string tmp[4] = {"a", "", "b", "c"};
     std::vector<std::string> expected(tmp, tmp + 4);
-    assert(strutil::split("a,,b,c", ",") == expected);
-    assert(strutil::split("a->->b->c", "->") == expected);
+    assert(util::split("a,,b,c", ",") == expected);
+    assert(util::split("a->->b->c", "->") == expected);
   }
 }
 */

@@ -23,13 +23,13 @@ body:
     id: implementation
     attributes:
       label: 내용
-      description: 구현 방법 또는 관련 정보
+      description: 구현 방법
 
   - type: textarea
     id: related-code
     attributes:
-      label: 연관 코드
-      description: API 또는 예시 코드
+      label: 연관 자료
+      description: API, 참고자료 또는 예시 코드
 
   - type: dropdown
     id: others
