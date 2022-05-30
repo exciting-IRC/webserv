@@ -2,9 +2,12 @@
 #define UTIL_PRETTYPRINT_HPP
 
 #include <algorithm>
+#include <array>
 #include <sstream>
+#include <strutil/strutil.hpp>
 #include <util/color.hpp>
 #include <util/numbers.hpp>
+#include <vector>
 
 namespace prettyprint {
 using namespace color_str;
@@ -65,39 +68,137 @@ string multiply(const string& s, size_t n) {
   return oss.str();
 }
 
-string center(const string& s, size_t width) {
+string center(const string& s, size_t width, char c = ' ') {
+  if (s.size() >= width)
+    return s;
+
   const size_t left = (width - s.length()) / 2;
   const size_t right = width - left - s.length();
 
-  return string(left, ' ') + s + string(right, ' ');
+  return string(left, c) + s + string(right, c);
 }
+
+string ljust(const string& s, size_t width, char c = ' ') {
+  if (s.size() >= width)
+    return s;
+
+  return s + string(width - s.length(), c);
+}
+
+string rjust(const string& s, size_t width, char c = ' ') {
+  if (s.size() >= width)
+    return s;
+
+  return string(width - s.length(), c) + s;
+}
+
+typedef string (*format_func)(const string& s, size_t width, char c);
+
+struct box_text_t {
+  enum e {
+    // clang-format off
+    Horizontal, Vertical,
+    TopLeft, TopMid, TopRight,
+    LineLeft, LineMid, LineRight,
+    BottomLeft, BottomMid, BottomRight
+    // clang-format on
+  };
+};
+
+struct border_type_t {
+  enum e { Top, Mid, Bottom };
+};
+
+std::array<string, 11> default_box_text = {"─", "│", "╭", "┬", "╮", "├",
+                                           "┼", "┤", "╰", "┴", "╯"};
+struct table {
+  std::vector<int> column_widths;
+  std::vector<string> headers;
+  std::vector<std::vector<string> > rows;
+
+  std::array<string, 11> box_text;
+
+  // Constructor
+  table(std::vector<int> column_widths, std::vector<string> headers,
+        std::array<string, 11> box_text = default_box_text)
+      : column_widths(column_widths), headers(headers), box_text(box_text) {}
+
+  // Getters
+  size_t row_width(size_t i) const { return column_widths[i] + 2; }
+  size_t columns() const { return column_widths.size(); }
+  std::array<string, 3> row_box_text(const border_type_t::e type) const {
+    const size_t at = 2 + type * 3;
+
+    std::array<string, 3> result = {box_text[at], box_text[at + 1],
+                                    box_text[at + 2]};
+    return result;
+  }
+
+  // Methods
+  string border(const border_type_t::e type) const {
+    std::stringstream ss;
+    std::array<string, 3> text = row_box_text(type);
+
+    ss << text[0];
+    if (columns() > 0) {
+      for (size_t i = 0; i < columns() - 1; i++)
+        ss << multiply("─", row_width(i)) << text[1];
+      ss << multiply("─", column_widths.back() + 2);
+    }
+    ss << text[2];
+
+    return ss.str();
+  }
+
+  string line(const std::vector<string>& row, bool center_after = false) const {
+    const string& cross = box_text[box_text_t::Vertical];
+    std::stringstream ss;
+
+    ss << cross;
+    for (size_t i = 0; i < columns(); i++) {
+      format_func format = (i == 0 || center_after) ? center : ljust;
+      ss << format((i < row.size()) ? row[i] : "", row_width(i), ' ');
+      if (i < columns() - 1)
+        ss << cross;
+    }
+    ss << cross;
+    return ss.str();
+  }
+
+  string top() const { return border(border_type_t::Top); }
+  string mid() const { return border(border_type_t::Mid); }
+  string bottom() const { return border(border_type_t::Bottom); }
+};
 
 /// 컨테이너의 원소를 표로 출력
 template <typename C>
 void table(const C& c, bool is_print_heading = true) {
+  (void)is_print_heading;
+  (void)c;
   const size_t index_width = printed_width(c.size());
   const size_t elem_width =
       clamp<size_t>(printed_width(widest_element(c)), 10u, 80u);
 
-  std::cout << "╭" << multiply("─", index_width + 2) << "┬"
-            << multiply("─", elem_width + 2) << "╮\n";
+  std::vector<int> widths;
+  widths.push_back(index_width);  // index
+  widths.push_back(elem_width);   // data
 
-  if (is_print_heading) {
-    std::cout << "│ " << HYEL << std::setw(index_width) << "#" << END << " │"
-              << HGRN << center("data", elem_width + 1) << END << " │\n";
+  std::vector<string> header;
+  header.push_back("#");
+  header.push_back("data");
 
-    std::cout << "├" << multiply("─", index_width + 2) << "┼"
-              << multiply("─", elem_width + 2) << "┤\n";
-  }
+  struct table t(widths, header);
 
+  std::cout << t.top() << "\n";
+  std::cout << t.line(header, true) << "\n";
+  std::cout << t.mid() << "\n";
   for (size_t i = 0; i < c.size(); i++) {
-    std::cout << "│ " << HRED << std::setw(index_width) << i << END << " │ ";
-    std::cout << (c[i].size() > 1 ? HCYN : "") << std::left
-              << std::setw(elem_width) << c[i] << END << " │\n";
+    std::vector<string> row;
+    row.push_back(util::to_string(i));
+    row.push_back(c[i]);
+    std::cout << t.line(row) << "\n";
   }
-
-  std::cout << "╰" << multiply("─", index_width + 2) << "┴"
-            << multiply("─", elem_width + 2) << "╯\n";
+  std::cout << t.bottom() << "\n";
 }
 
 }  // namespace prettyprint

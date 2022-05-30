@@ -50,6 +50,7 @@ int main() {
     std::cout << Message("line", color_t::HiYellow).cyan(i) << std::endl;
     // prettyprint::simple(tokens);
     prettyprint::table(tokens);
+    // break;
   }
   // std::ifstream infile("/Users/youkim/Repo/webserv/config.conf");
   // string line;
