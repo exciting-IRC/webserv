@@ -2,7 +2,6 @@
 #define PRETTYPRINT_PRETTYPRINT_HPP
 
 #include <algorithm>
-#include <array>
 #include <prettyprint/table.hpp>
 #include <sstream>
 #include <strutil/strutil.hpp>

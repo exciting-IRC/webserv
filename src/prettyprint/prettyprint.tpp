@@ -34,11 +34,16 @@ void as_table(const C& c, bool is_print_heading) {
   const size_t elem_width =
       clamp<size_t>(printed_width(widest_element(c)), 10u, 80u);
 
-  std::array<int, 2> widths = {index_width, elem_width};
-  std::array<string, 2> header = {"#", "data"};
+  vector<int> widths;
+  widths.push_back(index_width);
+  widths.push_back(elem_width);
 
-  table<2> t = {widths, header, default_box_text, default_header_colors,
-                default_row_colors};
+  vector<string> header;
+  header.push_back("#");
+  header.push_back("data");
+
+  table t = {widths, header, default_box_text, default_header_colors,
+             default_row_colors};
 
   if (is_print_heading) {
     std::cout << t.top() << "\n"
@@ -46,9 +51,11 @@ void as_table(const C& c, bool is_print_heading) {
               << t.mid() << "\n";
   }
   for (size_t i = 0; i < c.size(); i++) {
-    std::array<string, 2> row = {util::to_string(i), util::to_string(c[i])};
+    std::vector<string> row;
+    row.push_back(util::to_string(i));
+    row.push_back(util::to_string(c[i]));
     std::cout << t.line(row) << "\n";
-  }
+  };
   std::cout << t.bottom() << "\n";
 }
 
