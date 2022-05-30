@@ -1,14 +1,17 @@
 #include <logger/logger.hpp>
 
-namespace logger {
+namespace util {
 // Constructors & Destructor
 Logger::Logger()
     : stdout_loglevel_(loglevel_t::Debug), file_loglevel_(loglevel_t::None) {}
 
 Logger::Logger(const string& logfile, loglevel_t::e file_loglevel,
                loglevel_t::e stdout_loglevel)
-    : stdout_loglevel_(stdout_loglevel), file_loglevel_(file_loglevel) {
-  ofs.open(logfile.c_str(), std::fstream::out | std::fstream::app);
+    : ofs_(logfile.c_str(), std::fstream::out | std::fstream::app),
+      stdout_loglevel_(stdout_loglevel),
+      file_loglevel_(file_loglevel) {
+  if (!ofs_.is_open())
+    throw std::runtime_error("Failed to open log file: " + logfile);
 }
 
 // Getters/Setters
@@ -44,7 +47,7 @@ void Logger::log(const Message& msg, const loglevel_t::e level) {
         Message("level").red(level).add("is out of range").str());
   }
   if (level >= file_loglevel_)
-    ofs << levelMessages[level].plaintext() << msg.plaintext(flag_t::Newline);
+    ofs_ << levelMessages[level].plaintext() << msg.plaintext(flag_t::Newline);
   if (level >= stdout_loglevel_)
     std::cout << levelMessages[level] << msg.str(flag_t::Newline);
 }
@@ -55,4 +58,4 @@ void Logger::info(const Message& msg) { log(msg, loglevel_t::Info); }
 void Logger::warning(const Message& msg) { log(msg, loglevel_t::Warning); }
 void Logger::error(const Message& msg) { log(msg, loglevel_t::Error); }
 void Logger::critical(const Message& msg) { log(msg, loglevel_t::Critical); }
-}  // namespace logger
+}  // namespace util

@@ -3,10 +3,9 @@
 
 #include <sstream>
 #include <util/numbers.hpp>
-#include <util/types.hpp>
 
 template <typename T>
-u32 printed_width(const T& v) {
+size_t printed_width(const T& v) {
   std::stringstream ss;
 
   ss << v;

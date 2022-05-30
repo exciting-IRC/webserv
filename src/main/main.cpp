@@ -4,10 +4,8 @@
 #include <logger/logger.hpp>
 #include <logger/message.hpp>
 #include <string>
-#include <strutil/strutil.hpp>
 #include <unordered_map>
 #include <util/prettyprint.hpp>
-#include <util/types.hpp>
 #include <utility>
 #include <vector>
 
@@ -36,8 +34,8 @@ struct token {
   string value;
 };
 
-i32 main() {
-  using namespace logger;
+int main() {
+  using namespace util;
   vector<token> tokens;
   // unordered_map<string, string> tokens;
   // tokens["{"] = "BracketBegin";
@@ -45,14 +43,23 @@ i32 main() {
 
   std::ifstream infile("config.conf");
   string line;
-  for (i32 i = 0; std::getline(infile, line); i++) {
-    strutil::erase_from(line, "#");
+  for (int i = 0; std::getline(infile, line); i++) {
+    util::erase_from(line, "#");
 
-    vector<string> tokens = strutil::split(line);
+    vector<string> tokens = util::split(line);
     std::cout << Message("line", color_t::HiYellow).cyan(i) << std::endl;
     // prettyprint::simple(tokens);
     prettyprint::table(tokens);
   }
+  // std::ifstream infile("/Users/youkim/Repo/webserv/config.conf");
+  // string line;
+  // for (int i = 0; std::getline(infile, line); i++) {
+  //   util::erase_from(line, "#");
+
+  //   vector<string> tokens = util::split(line);
+  //   std::cout << "line " << i << std::endl;
+  //   util::print_vector(tokens);
+  // }
 
   return 0;
 }

@@ -56,18 +56,18 @@ static const typename C::value_type& widest_element(const C& c) {
                            element_comp<typename C::value_type>);
 }
 
-string multiply(const string& s, u32 n) {
+string multiply(const string& s, size_t n) {
   std::ostringstream oss;
 
-  for (u32 i = 0; i < n; i++) {
+  for (size_t i = 0; i < n; i++) {
     oss << s;
   }
   return oss.str();
 }
 
-string center(const string& s, u32 width) {
-  const u32 left = (width - s.length()) / 2;
-  const u32 right = width - left - s.length();
+string center(const string& s, size_t width) {
+  const size_t left = (width - s.length()) / 2;
+  const size_t right = width - left - s.length();
 
   return string(left, ' ') + s + string(right, ' ');
 }
@@ -75,8 +75,9 @@ string center(const string& s, u32 width) {
 /// 컨테이너의 원소를 표로 출력
 template <typename C>
 void table(const C& c, bool is_print_heading = true) {
-  const u32 index_width = printed_width(c.size());
-  const u32 elem_width = clamp(printed_width(widest_element(c)), 10u, 80u);
+  const size_t index_width = printed_width(c.size());
+  const size_t elem_width =
+      clamp<size_t>(printed_width(widest_element(c)), 10u, 80u);
 
   std::cout << "╭" << multiply("─", index_width + 2) << "┬"
             << multiply("─", elem_width + 2) << "╮\n";
@@ -89,7 +90,7 @@ void table(const C& c, bool is_print_heading = true) {
               << multiply("─", elem_width + 2) << "┤\n";
   }
 
-  for (u32 i = 0; i < c.size(); i++) {
+  for (size_t i = 0; i < c.size(); i++) {
     std::cout << "│ " << HRED << std::setw(index_width) << i << END << " │ ";
     std::cout << (c[i].size() > 1 ? HCYN : "") << std::left
               << std::setw(elem_width) << c[i] << END << " │\n";

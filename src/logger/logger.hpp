@@ -7,7 +7,7 @@
 #include <stdexcept>
 #include <string>
 #include <util/color.hpp>
-namespace logger {
+namespace util {
 using std::string;
 
 class Logger {
@@ -32,7 +32,7 @@ class Logger {
   typedef void (Logger::*logfunc)(const Message& msg);
 
  private:
-  std::ofstream ofs;
+  std::ofstream ofs_;
   // TODO: 출력 설정 벡터로 변경하기?
   loglevel_t::e stdout_loglevel_;
   loglevel_t::e file_loglevel_;
@@ -57,6 +57,6 @@ class Logger {
   void critical(const Message& msg);
 };
 
-}  // namespace logger
+}  // namespace util
 
 #endif  // LOGGER_LOGGER_HPP

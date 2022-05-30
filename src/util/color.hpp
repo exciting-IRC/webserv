@@ -2,7 +2,7 @@
 #define UTIL_COLOR_HPP
 
 #include <string>
-#include <unordered_map>
+#include <vector>
 
 struct color_t {
   // clang-format off
@@ -43,7 +43,7 @@ bool is_colored(color_t::e color);
 
 namespace color_str {
 using std::string;
-typedef const std::string color_code;
+typedef std::string color_code;
 
 // Regular text
 extern color_code BLK, RED, GRN, YEL, BLU, MAG, CYN, WHT;

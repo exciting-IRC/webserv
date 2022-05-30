@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-namespace strutil {
+namespace util {
 
 using std::string;
 using std::vector;
@@ -30,6 +30,6 @@ string to_string(const T& t) {
   return ss.str();
 }
 
-}  // namespace strutil
+}  // namespace util
 
 #endif  // STRUTIL_STRUTIL_HPP

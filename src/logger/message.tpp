@@ -5,7 +5,7 @@
 #include <strutil/strutil.hpp>
 #include <util/color.hpp>
 
-namespace logger {
+namespace util {
 
 template <typename T>
 Message& Message::red(const T& msg) {
@@ -34,10 +34,10 @@ Message& Message::cyan(const T& msg) {
 
 template <typename T>
 Message& Message::add(const T& msg, const color_t::e color) {
-  data_.push_back(coloredText(strutil::to_string(msg) + " ", color));
+  data_.push_back(coloredText(util::to_string(msg) + " ", color));
   return *this;
 }
 
-}  // namespace logger
+}  // namespace util
 
 #endif  // LOGGER_LOG_TPP
