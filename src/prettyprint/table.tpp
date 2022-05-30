@@ -63,7 +63,8 @@ string table<columns>::line(const row_t& row, bool is_header,
       justify_func format = (i == 0 || center_after) ? center : ljust;
 
       ss << colors[i] << ' '
-         << format((i < row.size()) ? row[i] : "", row_width(i) - 1, ' ')
+         << format((i < row.size()) ? replace(row[i], "\n", "\\n") : "",
+                   row_width(i) - 1, ' ')
          << END;
       if (i < columns - 1)
         ss << cross;

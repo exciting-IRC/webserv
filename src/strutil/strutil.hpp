@@ -28,6 +28,7 @@ typedef string& (*trim_func)(string& s, const string& match);
 typedef string (*justify_func)(const string& s, size_t width, char c);
 
 string multiply(const string& s, size_t n);
+string replace(string s, const string& old_value, const string& new_value);
 
 vector<string> split(const string& str, const string& sep = "");
 
